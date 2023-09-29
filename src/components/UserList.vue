@@ -36,7 +36,7 @@ export default {
           {{ user.category }}
         </th>
         <th class="p-3 text-sm text-gray-700 font-normal">
-          {{ user.name }}
+          {{ user.title }}
         </th>
         <th class="p-3 text-sm text-gray-700 font-normal">
           {{ user.date }}

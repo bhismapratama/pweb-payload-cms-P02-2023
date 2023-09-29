@@ -1,12 +1,16 @@
 <script>
 import { userStore } from "../store/store.js";
 
+let today = new Date(); 
+let date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear() + '.';
+let dateTime = date;
+
 export default {
   emits: ["close-modal"],
   data() {
     return {
       userStore,
-      inputName: "",
+      inputTitle: "",
       inputCategory: "",
     };
   },
@@ -14,18 +18,18 @@ export default {
     addUser() {
       if (
         this.inputCategory === "" ||
-        this.inputName === "" 
+        this.inputTitle === "" 
       )
         return;
       const newUser = {
         id: Date.now(),
         category: this.inputCategory,
-        name: this.inputName,
-        date: Date.now(),
+        title: this.inputTitle,
+        date: dateTime,
       };
       userStore.createUser(newUser);
       this.inputCategory = "";
-      this.inputName = "";
+      this.inputTitle = "";
       this.$emit("close-modal");
     },
   },
@@ -45,7 +49,7 @@ export default {
   <div class="flex flex-col gap-1">
       <label class="text-gray-700 font-semibold">Title</label>
       <input
-        v-model="inputName"
+        v-model="inputTitle"
         class="border-2 py-1 px-2 border-gray-400 rounded-md"
       />
     </div>

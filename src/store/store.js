@@ -24,7 +24,7 @@ export const userStore = reactive({
     "liburan"
   ],
   users: [
-    { id: 0, category: "Liburan", name: "jalan-jalan deh" },
+    { id: 0, category: "Liburan", title: "jalan-jalan deh", date: "30/09/2023" },
   ],
   createUser(user) {
     this.users.push(user);
