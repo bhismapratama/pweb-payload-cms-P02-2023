@@ -5,7 +5,7 @@
       >
         <div class="text-white flex text-center flex-col gap-3">
           <h1 class="text-[32px]">ABOUT US</h1>
-          <h3>Kelompok 1 pemrograman website </h3>
+          <h3>Kelompok P02 pemrograman website </h3>
           <h4 class="font-bold">Bhisma Elki Pratama / 5027221005</h4>
           <h4 class="font-bold">Muhammad Arsy Athallah / 5027221048</h4>
           <h4 class="font-bold">Mas Andreas / </h4>
