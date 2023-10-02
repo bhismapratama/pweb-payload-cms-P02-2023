@@ -8,7 +8,7 @@
           <h3>Kelompok P02 pemrograman website </h3>
           <h4 class="font-bold">Bhisma Elki Pratama / 5027221005</h4>
           <h4 class="font-bold">Muhammad Arsy Athallah / 5027221048</h4>
-          <h4 class="font-bold">Mas Andreas / </h4>
+          <h4 class="font-bold">Andreas Timotius Parhorasan Sihombing / 5027211019</h4>
         </div>
       </div>  
     </div>
