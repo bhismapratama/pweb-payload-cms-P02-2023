@@ -1,16 +1,16 @@
 <script>
-import { userStore } from "../store/store.js";
+import { todoStore } from "../store/crud.js";
 import Modal from "../components/Modal.vue";
-import CreateUserForm from "../components/CreateUserForm.vue";
+import AddTodo from "./AddTodo.vue";
 
 export default {
   components: {
     Modal,
-    CreateUserForm,
+    AddTodo,
   },
   data() {
     return {
-      userStore,
+      todoStore,
       isModal: false,
     };
   },
@@ -25,7 +25,7 @@ export default {
 <template>
   <span class="font-bold text-4xl text-gray-700">TODO LIST APP</span>
   <span class="font-base text-sm text-gray-400"
-    >{{ userStore.users.length }} lists</span
+    >{{ todoStore.todos.length }} lists</span
   >
   <div class="w-full flex justify-end">
     <button
@@ -35,7 +35,7 @@ export default {
       Create
     </button>
     <Modal @close-modal="toggleModal" :isModal="isModal">
-      <CreateUserForm @close-modal="toggleModal" />
+      <AddTodo @close-modal="toggleModal" />
     </Modal>
   </div>
 </template>

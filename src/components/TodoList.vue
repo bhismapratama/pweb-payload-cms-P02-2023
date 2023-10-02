@@ -1,13 +1,19 @@
 
 <script>
-import { userStore } from "../store/store.js";
+import { todoStore } from "../store/crud.js";
 export default {
   data() {
-    console.log(userStore);
+    console.log(todoStore);
     return {
-      userStore,
+      todoStore,
     };
   },
+  methods: {
+    toggleText(todo) {
+      // Ketika checkbox diubah, perbarui nilai isChecked pada objek todo
+      todo.isChecked = !todo.isChecked;
+    }
+  }
 };
 </script>
 
@@ -26,24 +32,35 @@ export default {
     <tbody>
       <tr
         class="border-b"
-        v-for="user in userStore.users"
-        :key="user.id"
+        v-for="todo in todoStore.todos"
+        :key="todo.id"
       >
-        <th class="p-3 text-sm text-gray-700 font-normal">
-          <input type="checkbox" class="cursor-pointer" id="input" >
+      <th class="p-3 text-sm text-gray-700 font-normal">
+          <input
+            type="checkbox"
+            class="cursor-pointer"
+            id="input"
+            v-model="todo.isChecked"
+          >
         </th>
         <th class="p-3 text-sm text-gray-700 font-normal" id="cate">
-          {{ user.category }}
+          <span :style="{ 'text-decoration': todo.isChecked ? 'line-through' : 'none' }">
+            {{ todo.category }}
+          </span>
         </th>
         <th class="p-3 text-sm text-gray-700 font-normal">
-          {{ user.title }}
+          <span :style="{ 'text-decoration': todo.isChecked ? 'line-through' : 'none' }">
+            {{ todo.title }}
+          </span>
         </th>
         <th class="p-3 text-sm text-gray-700 font-normal">
-          {{ user.date }}
+          <span :style="{ 'text-decoration': todo.isChecked ? 'line-through' : 'none' }">
+            {{ todo.date }}
+          </span>
         </th>
         <th>
           <div class="flex justify-center gap-4 items-center h-full w-full">
-            <router-link :to="{ name: 'edit', params: { id: user.id } }">
+            <router-link :to="{ name: 'edit', params: { id: todo.id } }">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="1.2em"
@@ -56,7 +73,7 @@ export default {
             </svg>
             </router-link>
             <svg
-              @click="userStore.deleteUser(user.id)"
+              @click="todoStore.deleteTodo(todo.id)"
               xmlns="http://www.w3.org/2000/svg"
               height="1.2em"
               viewBox="0 0 448 512"
