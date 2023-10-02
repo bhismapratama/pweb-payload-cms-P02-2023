@@ -3,7 +3,7 @@
       <div
         class="block p-6 lg:w-1/2 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
       >
-        <div class="text-white flex text-center flex-col gap-3">
+        <div class="text-black flex text-center flex-col gap-3">
           <h1 class="text-[32px]">ABOUT US</h1>
           <h3>Kelompok P02 pemrograman website </h3>
           <h4 class="font-bold">Bhisma Elki Pratama / 5027221005</h4>

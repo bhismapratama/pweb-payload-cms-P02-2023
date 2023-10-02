@@ -23,24 +23,29 @@ export const todoStore = reactive({
     "Keluarga dan Anak",
     "liburan"
   ],
-  todos: [],
+  todos: JSON.parse(localStorage.getItem('todos')) || [],
   createTodo(todo) {
     this.todos.push(todo);
+    this.saveToLocalStorage();
   },
   deleteTodo(todoId) {
     const todoIndex = this.todos.findIndex((todo) => todo.id === todoId);
-    console.log(todoIndex)
     if (todoIndex !== -1) {
       this.todos.splice(todoIndex, 1);
+      this.saveToLocalStorage();
     }
   },
   editTodo(updatedTodo) {
-    const todoIndex = todoStore.todos.findIndex((todo) => todo.id === updatedTodo.id);
+    const todoIndex = this.todos.findIndex((todo) => todo.id === updatedTodo.id);
     if (todoIndex !== -1) {
-      todoStore.todos.splice(todoIndex, 1, updatedTodo);
+      this.todos.splice(todoIndex, 1, updatedTodo);
+      this.saveToLocalStorage();
     } else {
-      todoStore.todos.splice(todoIndex, 1, updatedTodo);
+      this.todos.splice(todoIndex, 1, updatedTodo);
+      this.saveToLocalStorage();
     }
+  },
+  saveToLocalStorage() {
+    localStorage.setItem('todos', JSON.stringify(this.todos));
   }
-
 });
