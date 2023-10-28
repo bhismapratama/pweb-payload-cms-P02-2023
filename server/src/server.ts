@@ -63,10 +63,23 @@ app.post("/api/todo/AddNotes", multer().none(), async (request, response) => {
       title: title,
       category: category,
       status: status,
+      published_date: currentTimestamp,
       timestamp_date: current_date.toDateString(),
       timestamp_time: current_date.toLocaleTimeString(),
       createdAt: currentTimestamp,
       updatedAt: currentTimestamp,
+    });
+
+    await database.collection("categories").insertOne({
+      name: title,
+      createdAt: currentTimestamp,
+      updatedAt: currentTimestamp,
+    });
+
+    await database.collection("changelogs").insertOne({
+      type: category,
+      title: title,
+      action: status,
     });
 
     response.json("pun saestu ditambah");
@@ -96,10 +109,23 @@ app.patch("/api/todo/UpdateNotes/:id", multer().none(), async (request, response
     const result = await database.collection("todos").updateOne({ _id: objectId }, { $set: updatedNote });
 
     if (result.modifiedCount === 1) {
+      await database.collection("categories").insertOne({
+        name: updatedTitle,
+        createdAt: current_date,
+        updatedAt: current_date,
+      });
+
+      await database.collection("changelogs").insertOne({
+        type: updatedCategory,
+        title: updatedTitle,
+        action: updatedStatus,
+      });
+
       response.json("pun update sedoyo");
     } else {
       response.status(404).json({ message: "lho error update" });
     }
+
   } catch (error) {
     response.status(400).json({ message: "info ID???" });
   }

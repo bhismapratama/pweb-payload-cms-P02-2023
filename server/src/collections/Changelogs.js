@@ -1,7 +1,7 @@
 /** @type {import('payload/types').CollectionConfig} */
 
-const Changelog = {
-    slug: 'changelog',
+const Changelogs = {
+    slug: 'changelogs',
     access: {
         create: () => false,
         read: () => true,
@@ -10,23 +10,23 @@ const Changelog = {
     },
     fields: [
         {
-            name: 'halo',
-            label: 'hai',
+            name: 'type',
+            label: 'Type',
             type: 'text',
             required: true,
         },
         {
-            name: 'nama',
-            label: 'title',
+            name: 'name',
+            label: 'Title',
             type: 'text',
             required: true,
         },
         {
             name: 'action',
-            type: 'info',
+            type: 'text',
             required: true,
         },
     ],
 };
 
-export default Changelog;
+export default Changelogs;

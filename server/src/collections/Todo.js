@@ -1,16 +1,11 @@
 import payload from 'payload';
 
-const createChangelogEntry = async (type, name, action) => {
-    await payload.create({
-        collection: 'changelog',
-        data: { type, name, action },
-    });
-};
+/** @type {import('payload/types').CollectionConfig} */
 
 const Todo = {
     slug: 'todo',
     admin: {
-        useAsTitle: 'title',
+        useAsTitle: 'name',
     },
     access: {
         create: () => true,
@@ -54,8 +49,8 @@ const Todo = {
                     label: 'On Progress',
                 },
                 {
-                    value: 'completed',
-                    label: 'completed',
+                    value: 'done',
+                    label: 'Done',
                 },
             ],
             defaultValue: 'not started',
@@ -68,20 +63,41 @@ const Todo = {
         afterOperation: [
             async (args) => {
                 if (args.operation == 'create') {
-                    await createChangelogEntry('Todo', args.result.title, 'Created');
+                    payload.create({
+                        collection: 'changelog',
+                        data: {
+                            type: 'Todo',
+                            name: args.result.title,
+                            action: 'Created',
+                        },
+                    });
                 }
             },
         ],
         afterChange: [
             async (args) => {
                 if (args.operation == 'update') {
-                    await createChangelogEntry('Todo', args.doc.title, 'Updated');
+                    payload.create({
+                        collection: 'changelog',
+                        data: {
+                            type: 'Todo',
+                            name: args.doc.title,
+                            action: 'Updated',
+                        },
+                    });
                 }
             },
         ],
         afterDelete: [
             async (args) => {
-                await createChangelogEntry('Todo', args.doc.title, 'Deleted');
+                payload.create({
+                    collection: 'changelog',
+                    data: {
+                        type: 'Todo',
+                        name: args.doc.title,
+                        action: 'Deleted.',
+                    },
+                });
             },
         ],
     },

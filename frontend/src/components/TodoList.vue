@@ -349,6 +349,7 @@ export default {
 
       try {
         const response = await api.addTask(newTaskData);
+        await api.createTodo(newTaskData);
         if (response) {
           const current_date = new Date();
           const timestamp_date = current_date.toDateString();
