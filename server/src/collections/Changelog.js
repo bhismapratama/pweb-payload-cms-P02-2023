@@ -10,20 +10,20 @@ const Changelog = {
     },
     fields: [
         {
-            name: 'type',
-            label: 'Type',
+            name: 'halo',
+            label: 'hai',
             type: 'text',
             required: true,
         },
         {
-            name: 'name',
-            label: 'Title',
+            name: 'nama',
+            label: 'title',
             type: 'text',
             required: true,
         },
         {
             name: 'action',
-            type: 'text',
+            type: 'info',
             required: true,
         },
     ],

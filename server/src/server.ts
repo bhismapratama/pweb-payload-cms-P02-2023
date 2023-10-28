@@ -44,7 +44,7 @@ try {
 
 app.get("/api/todo/GetNotes", async (request, response) => {
   try {
-    const result = await database.collection("todocollection").find({}).toArray();
+    const result = await database.collection("todos").find({}).toArray();
     response.json(result);
   } catch (error) {
     response.status(500).json({ message: "kebanyakan pikiran jadi error" });
@@ -59,7 +59,7 @@ app.post("/api/todo/AddNotes", multer().none(), async (request, response) => {
     const currentTimestamp = new Date();
     const current_date = new Date();
 
-    await database.collection("todocollection").insertOne({
+    await database.collection("todos").insertOne({
       title: title,
       category: category,
       status: status,
@@ -93,7 +93,7 @@ app.patch("/api/todo/UpdateNotes/:id", multer().none(), async (request, response
       timestamp_time: current_date.toLocaleTimeString(),
     };
 
-    const result = await database.collection("todocollection").updateOne({ _id: objectId }, { $set: updatedNote });
+    const result = await database.collection("todos").updateOne({ _id: objectId }, { $set: updatedNote });
 
     if (result.modifiedCount === 1) {
       response.json("pun update sedoyo");
@@ -110,10 +110,10 @@ app.delete("/api/todo/DeleteNotes", async (request, response) => {
     const id = request.query.id as string;
     const objectId = new ObjectId(id);
 
-    const result = await database.collection("todocollection").deleteOne({ _id: objectId });
+    const result = await database.collection("todos").deleteOne({ _id: objectId });
 
     if (result.deletedCount === 1) {
-      response.json("terhapus mang");
+      response.json("Catatan berhasil dihapus");
     } else {
       response.status(404).json({ message: "lhoo hapus error" });
     }

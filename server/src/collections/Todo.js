@@ -54,8 +54,8 @@ const Todo = {
                     label: 'On Progress',
                 },
                 {
-                    value: 'done',
-                    label: 'Done',
+                    value: 'completed',
+                    label: 'completed',
                 },
             ],
             defaultValue: 'not started',
